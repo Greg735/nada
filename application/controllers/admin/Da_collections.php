@@ -54,8 +54,8 @@ class Da_Collections extends MY_Controller {
 		$content=NULL;
 		
 		//validation rules
-		$this->form_validation->set_rules('title', t('title'), 'xss_clean|trim|required|max_length[255]');
-		$this->form_validation->set_rules('description', t('description'), 'xss_clean|trim|max_length[600]');
+		$this->form_validation->set_rules('title', t('title'), 'html_escape|trim|required|max_length[255]');
+		$this->form_validation->set_rules('description', t('description'), 'html_escape|trim|max_length[600]');
 				
 		//process form				
 		if ($this->form_validation->run() == TRUE)

@@ -56,10 +56,10 @@ class User_groups extends MY_Controller {
 		}
 
 		//validation rules
-		$this->form_validation->set_rules('name', t('name'), 'xss_clean|trim|required|max_length[100]');
-		$this->form_validation->set_rules('description', t('description'), 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('group_type', t('group_type'), 'xss_clean|trim|required|max_length[45]');
-		$this->form_validation->set_rules('access_type', t('access_type'), 'xss_clean|trim|required|max_length[45]');
+		$this->form_validation->set_rules('name', t('name'), 'html_escape|trim|required|max_length[100]');
+		$this->form_validation->set_rules('description', t('description'), 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('group_type', t('group_type'), 'html_escape|trim|required|max_length[45]');
+		$this->form_validation->set_rules('access_type', t('access_type'), 'html_escape|trim|required|max_length[45]');
 				
 		//process form				
 		if ($this->form_validation->run() == TRUE)

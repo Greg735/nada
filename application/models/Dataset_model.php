@@ -1428,10 +1428,10 @@ class Dataset_model extends CI_Model {
 	
 		//validation rules for a new record
 		if($is_new){				
-			#$this->form_validation->set_rules('title', 'Title', 'required|xss_clean|trim|max_length[255]');	
-			$this->form_validation->set_rules('repositoryid', 'Collection ID', 'required|xss_clean|trim|max_length[25]');	
-			#$this->form_validation->set_rules('nation', 'Country name', 'required|xss_clean|trim|max_length[255]');	
-			#$this->form_validation->set_rules('year', 'year', 'required|is_numeric|xss_clean|trim|max_length[4]');	
+			#$this->form_validation->set_rules('title', 'Title', 'required|html_escape|trim|max_length[255]');
+			$this->form_validation->set_rules('repositoryid', 'Collection ID', 'required|html_escape|trim|max_length[25]');
+			#$this->form_validation->set_rules('nation', 'Country name', 'required|html_escape|trim|max_length[255]');
+			#$this->form_validation->set_rules('year', 'year', 'required|is_numeric|html_escape|trim|max_length[4]');
 
 			
 			//survey idno validation rule
@@ -1442,7 +1442,7 @@ class Dataset_model extends CI_Model {
 					"required",
 					"alpha_dash",
 					"max_length[200]",
-					"xss_clean",
+					"html_escape",
 					array('validate_survey_idno',array($this, 'validate_survey_idno')),				
 				)		
 			);
@@ -1473,13 +1473,13 @@ class Dataset_model extends CI_Model {
 		$this->form_validation->set_data($options);
 	
 		//validation rules for a new record
-		$this->form_validation->set_rules('link_da', 'Remote Data URL', 'xss_clean|trim|max_length[500]');	
-		$this->form_validation->set_rules('published', 'Published', 'integer|xss_clean|trim|max_length[1]');
-		$this->form_validation->set_rules('link_questionnaire', 'link_questionnaire', 'valid_url|xss_clean|trim|max_length[300]');
-		$this->form_validation->set_rules('link_technical', 'link_technical', 'valid_url|xss_clean|trim|max_length[300]');
-		$this->form_validation->set_rules('link_study', 'link_study', 'valid_url|xss_clean|trim|max_length[300]');
-		$this->form_validation->set_rules('link_indicator', 'link_indicator', 'valid_url|xss_clean|trim|max_length[300]');
-		#$this->form_validation->set_rules('repositoryid', 'Collection ID', 'alpha_numeric|xss_clean|trim|max_length[25]');	
+		$this->form_validation->set_rules('link_da', 'Remote Data URL', 'html_escape|trim|max_length[500]');
+		$this->form_validation->set_rules('published', 'Published', 'integer|html_escape|trim|max_length[1]');
+		$this->form_validation->set_rules('link_questionnaire', 'link_questionnaire', 'valid_url|html_escape|trim|max_length[300]');
+		$this->form_validation->set_rules('link_technical', 'link_technical', 'valid_url|html_escape|trim|max_length[300]');
+		$this->form_validation->set_rules('link_study', 'link_study', 'valid_url|html_escape|trim|max_length[300]');
+		$this->form_validation->set_rules('link_indicator', 'link_indicator', 'valid_url|html_escape|trim|max_length[300]');
+		#$this->form_validation->set_rules('repositoryid', 'Collection ID', 'alpha_numeric|html_escape|trim|max_length[25]');
 		
 		//repository ID
 		$this->form_validation->set_rules(
@@ -1488,7 +1488,7 @@ class Dataset_model extends CI_Model {
 			array(
 				"alpha_dash",
 				"max_length[50]",
-				"xss_clean",
+				"html_escape",
 				array('validate_repository_idno_exists',array($this, 'validate_repository_idno_exists')),				
 			)		
 		);

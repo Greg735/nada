@@ -43,8 +43,8 @@ class Regions extends MY_Controller {
 		}
 		
 		//validation rules
-		$this->form_validation->set_rules('title', t('title'), 'xss_clean|trim|required|max_length[100]');
-		$this->form_validation->set_rules('weight', t('weight'), 'is_numeric|xss_clean|trim|required|max_length[3]');
+		$this->form_validation->set_rules('title', t('title'), 'html_escape|trim|required|max_length[100]');
+		$this->form_validation->set_rules('weight', t('weight'), 'is_numeric|html_escape|trim|required|max_length[3]');
 		
 		$data=array();
 		$region_parents=$this->country_region_model->get_parents();

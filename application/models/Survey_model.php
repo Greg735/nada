@@ -535,11 +535,11 @@ class Survey_model extends CI_Model {
 	
 		//validation rules for a new record
 		if($is_new){				
-			#$this->form_validation->set_rules('surveyid', 'IDNO', 'xss_clean|trim|max_length[255]|required');
-			$this->form_validation->set_rules('titl', 'Title', 'required|xss_clean|trim|max_length[255]');	
-			$this->form_validation->set_rules('repositoryid', 'Collection ID', 'required|xss_clean|trim|max_length[25]');	
-			#$this->form_validation->set_rules('nation', 'Country name', 'required|xss_clean|trim|max_length[255]');	
-			$this->form_validation->set_rules('year', 'year', 'required|is_numeric|xss_clean|trim|max_length[4]');	
+			#$this->form_validation->set_rules('surveyid', 'IDNO', 'html_escape|trim|max_length[255]|required');
+			$this->form_validation->set_rules('titl', 'Title', 'required|html_escape|trim|max_length[255]');
+			$this->form_validation->set_rules('repositoryid', 'Collection ID', 'required|html_escape|trim|max_length[25]');
+			#$this->form_validation->set_rules('nation', 'Country name', 'required|html_escape|trim|max_length[255]');
+			$this->form_validation->set_rules('year', 'year', 'required|is_numeric|html_escape|trim|max_length[4]');
 
 			
 			//survey idno validation rule

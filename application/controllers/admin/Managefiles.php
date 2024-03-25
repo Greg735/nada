@@ -309,7 +309,7 @@ class Managefiles extends MY_Controller {
 		//update remote form url
 		if ($forminfo['model']=='remote')
 		{
-			$this->form_validation->set_rules('link_da', t('url'), 'prep_url|xss_clean|trim|valid_url|callback__url_check|max_length[255]');
+			$this->form_validation->set_rules('link_da', t('url'), 'prep_url|html_escape|trim|valid_url|callback__url_check|max_length[255]');
 			
 			$form_validated=$this->form_validation->run();
 			if ($form_validated == TRUE && $this->input->post("link_da")!==FALSE)

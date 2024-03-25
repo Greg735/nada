@@ -33,10 +33,10 @@ class Pdf_generator extends MY_Controller {
 		$survey=$this->Catalog_model->select_single($sid);
 		$this->acl_manager->has_access_or_die('study', 'edit',null,$survey['repositoryid']);
 		
-		$this->form_validation->set_rules('website_title', t('website_title'), 'xss_clean|trim|required|max_length[255]');
-		$this->form_validation->set_rules('study_title', t('study_title'), 'xss_clean|trim|required|max_length[400]');
-		$this->form_validation->set_rules('publisher', t('publisher'), 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('website_url', t('website_url'), 'xss_clean|trim|required|max_length[255]');
+		$this->form_validation->set_rules('website_title', t('website_title'), 'html_escape|trim|required|max_length[255]');
+		$this->form_validation->set_rules('study_title', t('study_title'), 'html_escape|trim|required|max_length[400]');
+		$this->form_validation->set_rules('publisher', t('publisher'), 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('website_url', t('website_url'), 'html_escape|trim|required|max_length[255]');
 
 		$data=array();
 		if ($this->form_validation->run() == TRUE)

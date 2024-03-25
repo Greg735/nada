@@ -66,8 +66,8 @@ class Repository_Sections extends MY_Controller {
 		}
 
 		//validation rules
-		$this->form_validation->set_rules('title', t('title'), 'xss_clean|trim|required|max_length[255]');
-		$this->form_validation->set_rules('weight', t('weight'), 'xss_clean|trim|numeric');
+		$this->form_validation->set_rules('title', t('title'), 'html_escape|trim|required|max_length[255]');
+		$this->form_validation->set_rules('weight', t('weight'), 'html_escape|trim|numeric');
 				
 		//process form				
 		if ($this->form_validation->run() == TRUE)

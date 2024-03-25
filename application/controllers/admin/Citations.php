@@ -171,15 +171,15 @@ class Citations extends MY_Controller {
         }
 
         //validate form input
-        $this->form_validation->set_rules('title', 'Title', 'xss_clean|trim|max_length[255]|required');
-        $this->form_validation->set_rules('authors', 'Authors', 'xss_clean|trim|max_length[255]');
-        $this->form_validation->set_rules('url', 'URL', 'xss_clean|trim|max_length[255]');
-        $this->form_validation->set_rules('volume', 'Volume', 'xss_clean|trim|max_length[45]');
-        $this->form_validation->set_rules('issue', 'Issue', 'xss_clean|trim|max_length[45]');
-        $this->form_validation->set_rules('pub_year', 'Year', 'xss_clean|trim|max_length[4]|is_numeric');
-        $this->form_validation->set_rules('doi', 'DOI', 'xss_clean|trim|max_length[45]');
-        $this->form_validation->set_rules('flag', t('flag_as'), 'xss_clean|trim|max_length[45]');
-        $this->form_validation->set_rules('published', t('published'), 'xss_clean|trim|is_numeric');
+        $this->form_validation->set_rules('title', 'Title', 'html_escape|trim|max_length[255]|required');
+        $this->form_validation->set_rules('authors', 'Authors', 'html_escape|trim|max_length[255]');
+        $this->form_validation->set_rules('url', 'URL', 'html_escape|trim|max_length[255]');
+        $this->form_validation->set_rules('volume', 'Volume', 'html_escape|trim|max_length[45]');
+        $this->form_validation->set_rules('issue', 'Issue', 'html_escape|trim|max_length[45]');
+        $this->form_validation->set_rules('pub_year', 'Year', 'html_escape|trim|max_length[4]|is_numeric');
+        $this->form_validation->set_rules('doi', 'DOI', 'html_escape|trim|max_length[45]');
+        $this->form_validation->set_rules('flag', t('flag_as'), 'html_escape|trim|max_length[45]');
+        $this->form_validation->set_rules('published', t('published'), 'html_escape|trim|is_numeric');
 
         //ignore the form submit if only changing the citation type
         if ($this->input->post("select")==FALSE){
@@ -677,7 +677,7 @@ class Citations extends MY_Controller {
 		$this->template->add_css('javascript/jquery/themes/base/jquery-ui.css');
 		$this->template->add_js('javascript/jquery/ui/jquery.ui.js');
 
-		$this->form_validation->set_rules('citation_string', t('citation_string'), 'xss_clean|trim|required');
+		$this->form_validation->set_rules('citation_string', t('citation_string'), 'html_escape|trim|required');
 		$string=$this->input->post("citation_string");
 
         //get current user object

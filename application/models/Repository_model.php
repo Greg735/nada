@@ -1329,12 +1329,12 @@ class Repository_model extends CI_Model {
 		$this->form_validation->set_data($options);
 	
 		//set validation rules
-		$this->form_validation->set_rules('title', t('title'), 'xss_clean|trim|required|max_length[255]');
-		$this->form_validation->set_rules('short_text', t('short_text'), 'xss_clean|trim|required|max_length[1000]');
-		$this->form_validation->set_rules('long_text', t('long_text'), 'trim|xss_clean|required');
-		$this->form_validation->set_rules('weight', t('weight'), 'xss_clean|trim|max_length[3]|is_natural');
-		$this->form_validation->set_rules('section', t('section'), 'xss_clean|trim|max_length[3]|is_natural');
-		$this->form_validation->set_rules('ispublished', t('published'), 'required|xss_clean|trim|max_length[1]|is_natural');			
+		$this->form_validation->set_rules('title', t('title'), 'html_escape|trim|required|max_length[255]');
+		$this->form_validation->set_rules('short_text', t('short_text'), 'html_escape|trim|required|max_length[1000]');
+		$this->form_validation->set_rules('long_text', t('long_text'), 'trim|html_escape|required');
+		$this->form_validation->set_rules('weight', t('weight'), 'html_escape|trim|max_length[3]|is_natural');
+		$this->form_validation->set_rules('section', t('section'), 'html_escape|trim|max_length[3]|is_natural');
+		$this->form_validation->set_rules('ispublished', t('published'), 'required|html_escape|trim|max_length[1]|is_natural');
 			
 		//repositoryid validation rule
 		$this->form_validation->set_rules(
@@ -1344,7 +1344,7 @@ class Repository_model extends CI_Model {
 				"required",
 				"alpha_dash",
 				"max_length[30]",
-				"xss_clean",
+				"html_escape",
 				array(
 					'validate_repository_id_format_check',
 					array($this, 'validate_repository_id_format_check')

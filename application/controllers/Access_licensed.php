@@ -414,17 +414,17 @@ class Access_licensed extends MY_Controller {
 		$this->load->library('form_validation');
 		
 		//validation rules
-		$this->form_validation->set_rules('org_rec', t('receiving_organization_name'), 'trim|required|xss_clean|max_length[255]');
-		//$this->form_validation->set_rules('address', t('postal_address'), 'trim|required|xss_clean|max_length[255]');
-		$this->form_validation->set_rules('tel', t('telephone'), 'trim|required|xss_clean|max_length[14]');
-		$this->form_validation->set_rules('datause', t('intended_use_of_data'), 'trim|required|xss_clean|max_length[1000]');
-		$this->form_validation->set_rules('dataset_access', t('dataset_access'), 'trim|required|xss_clean|max_length[15]');
+		$this->form_validation->set_rules('org_rec', t('receiving_organization_name'), 'trim|required|html_escape|max_length[255]');
+		//$this->form_validation->set_rules('address', t('postal_address'), 'trim|required|html_escape|max_length[255]');
+		$this->form_validation->set_rules('tel', t('telephone'), 'trim|required|html_escape|max_length[14]');
+		$this->form_validation->set_rules('datause', t('intended_use_of_data'), 'trim|required|html_escape|max_length[1000]');
+		$this->form_validation->set_rules('dataset_access', t('dataset_access'), 'trim|required|html_escape|max_length[15]');
 		
 		//optional fields
-		//$this->form_validation->set_rules('org_type', t('org_type'), 'trim|xss_clean|max_length[45]');
-		$this->form_validation->set_rules('compdate', t('expected_completion'), 'trim|xss_clean|max_length[45]');
-		$this->form_validation->set_rules('datamatching', t('data_matching'), 'trim|xss_clean|max_length[1]');
-		$this->form_validation->set_rules('fax', t('fax'), 'trim|xss_clean|max_lengh[14]');		
+		//$this->form_validation->set_rules('org_type', t('org_type'), 'trim|html_escape|max_length[45]');
+		$this->form_validation->set_rules('compdate', t('expected_completion'), 'trim|html_escape|max_length[45]');
+		$this->form_validation->set_rules('datamatching', t('data_matching'), 'trim|html_escape|max_length[1]');
+		$this->form_validation->set_rules('fax', t('fax'), 'trim|html_escape|max_lengh[14]');
 	
 		//process form				
 		if ($this->form_validation->run() == TRUE)

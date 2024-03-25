@@ -144,8 +144,8 @@ class Datafiles extends MY_Controller {
 		}
 		
 		//validate form input
-		$this->form_validation->set_rules('title', 'Title', 'xss_clean|trim|required|max_length[255]');
-		$this->form_validation->set_rules('description', 'Description', 'xss_clean|trim|max_length[255]');
+		$this->form_validation->set_rules('title', 'Title', 'html_escape|trim|required|max_length[255]');
+		$this->form_validation->set_rules('description', 'Description', 'html_escape|trim|max_length[255]');
 
 		$edit_data=NULL;
 		

@@ -530,7 +530,7 @@ class Datadeposit extends MY_Controller {
         $this->load->model('DD_tasks_team_model');
 
         //validation rules
-        $this->form_validation->set_rules('user_id', t('User'), 'xss_clean|required|max_length[10]|numeric');
+        $this->form_validation->set_rules('user_id', t('User'), 'html_escape|required|max_length[10]|numeric');
 
         //process form
         if ($this->form_validation->run() == TRUE) {

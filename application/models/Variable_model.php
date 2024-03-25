@@ -483,10 +483,10 @@ class Variable_model extends CI_Model {
 	
 		//validation rules for a new record
 		if($is_new){				
-			$this->form_validation->set_rules('fid', 'File ID', 'xss_clean|trim|max_length[50]|required|alpha_dash');
-			$this->form_validation->set_rules('vid', 'Variable ID', 'required|xss_clean|trim|max_length[100]|alpha_dash');	
-			$this->form_validation->set_rules('name', 'Variable name', 'required|xss_clean|trim|max_length[255]');	
-			//$this->form_validation->set_rules('labl', 'Label', 'required|xss_clean|trim|max_length[255]');	
+			$this->form_validation->set_rules('fid', 'File ID', 'html_escape|trim|max_length[50]|required|alpha_dash');
+			$this->form_validation->set_rules('vid', 'Variable ID', 'required|html_escape|trim|max_length[100]|alpha_dash');
+			$this->form_validation->set_rules('name', 'Variable name', 'required|html_escape|trim|max_length[255]');
+			//$this->form_validation->set_rules('labl', 'Label', 'required|html_escape|trim|max_length[255]');
 		}
 		
 		if ($this->form_validation->run() == TRUE){

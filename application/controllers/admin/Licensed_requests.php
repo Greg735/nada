@@ -184,9 +184,9 @@ class Licensed_requests extends MY_Controller {
 		//$this->acl->user_has_lic_request_access($requestid);
 		$this->acl_manager->has_access_or_die('licensed_request', 'view',null,$this->active_repo->repositoryid);
 
-		$this->form_validation->set_rules('status', 'Status', 'trim|required|xss_clean|callback__status_check');
-		$this->form_validation->set_rules('comments', 'Comments', 'trim|xss_clean');		
-		$this->form_validation->set_rules('ip_limit', 'IP address', 'trim|xss_clean|callback__valid_ip');		
+		$this->form_validation->set_rules('status', 'Status', 'trim|required|html_escape|callback__status_check');
+		$this->form_validation->set_rules('comments', 'Comments', 'trim|html_escape');
+		$this->form_validation->set_rules('ip_limit', 'IP address', 'trim|html_escape|callback__valid_ip');
 
 		$post=$_POST;
 		foreach($post as $key=>$value)
@@ -204,8 +204,8 @@ class Licensed_requests extends MY_Controller {
 				$index=str_replace('fileid-','',$key);
 				
 				//add validation
-				$this->form_validation->set_rules('download-limit-'.$index, t('download_limit'), 'trim|required|xss_clean|integer');
-				$this->form_validation->set_rules('expiry-'.$index, t('expiry_date'), 'trim|required|xss_clean|callback__date_check');
+				$this->form_validation->set_rules('download-limit-'.$index, t('download_limit'), 'trim|required|html_escape|integer');
+				$this->form_validation->set_rules('expiry-'.$index, t('expiry_date'), 'trim|required|html_escape|callback__date_check');
 				
 				$options=array(
 					'download_limit'=>$this->input->post('download-limit-'.$index),
@@ -356,10 +356,10 @@ class Licensed_requests extends MY_Controller {
 		//$this->acl->user_has_lic_request_access($requestid);
 		$this->acl_manager->has_access_or_die('licensed_request', 'edit',null,$this->active_repo->repositoryid);
 		
-		$this->form_validation->set_rules('to', t('to'), 'trim|required|xss_clean');
-		$this->form_validation->set_rules('cc', t('cc'), 'trim|xss_clean');
-		$this->form_validation->set_rules('subject', t('subject'), 'trim|xss_clean|required');		
-		$this->form_validation->set_rules('body', t('body'), 'required|trim|xss_clean');		
+		$this->form_validation->set_rules('to', t('to'), 'trim|required|html_escape');
+		$this->form_validation->set_rules('cc', t('cc'), 'trim|html_escape');
+		$this->form_validation->set_rules('subject', t('subject'), 'trim|html_escape|required');
+		$this->form_validation->set_rules('body', t('body'), 'required|trim|html_escape');
 
 		//process form				
 		if ($this->form_validation->run() == FALSE)
@@ -433,10 +433,10 @@ class Licensed_requests extends MY_Controller {
 			show_404("REQUEST_INVALID");
 		}
 		
-		$this->form_validation->set_rules('to', t('to'), 'trim|required|xss_clean');
-		$this->form_validation->set_rules('cc', t('cc'), 'trim|xss_clean');
-		$this->form_validation->set_rules('subject', t('subject'), 'trim|xss_clean|required');		
-		$this->form_validation->set_rules('body', t('body'), 'required|trim|xss_clean');		
+		$this->form_validation->set_rules('to', t('to'), 'trim|required|html_escape');
+		$this->form_validation->set_rules('cc', t('cc'), 'trim|html_escape');
+		$this->form_validation->set_rules('subject', t('subject'), 'trim|html_escape|required');
+		$this->form_validation->set_rules('body', t('body'), 'required|trim|html_escape');
 
 		//process form				
 		if ($this->form_validation->run() == FALSE)

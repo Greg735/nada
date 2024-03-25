@@ -202,9 +202,9 @@ class Survey_resource_model extends CI_Model {
 
 		//below rules only get applied if inserting a new record or filled in when updating a record
 		if($is_new || (!$is_new && isset($options['dctype']) )) {
-			$this->form_validation->set_rules('dctype', 'Resource Type', 'xss_clean|trim|max_length[100]|required');
-			$this->form_validation->set_rules('title', 'Title', 'xss_clean|trim|max_length[255]|required');
-			$this->form_validation->set_rules('url', 'URL', 'xss_clean|trim|max_length[255]');	
+			$this->form_validation->set_rules('dctype', 'Resource Type', 'html_escape|trim|max_length[100]|required');
+			$this->form_validation->set_rules('title', 'Title', 'html_escape|trim|max_length[255]|required');
+			$this->form_validation->set_rules('url', 'URL', 'html_escape|trim|max_length[255]');
 		}
 		//survey_id validation rule
 		$this->form_validation->set_rules(

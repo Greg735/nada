@@ -85,8 +85,8 @@ class Countries extends MY_Controller {
 		}
 		
 		//validation rules
-		$this->form_validation->set_rules('name', t('name'), 'xss_clean|trim|required|max_length[100]');
-		$this->form_validation->set_rules('iso', t('ISO'), 'xss_clean|trim|required|max_length[3]');
+		$this->form_validation->set_rules('name', t('name'), 'html_escape|trim|required|max_length[100]');
+		$this->form_validation->set_rules('iso', t('ISO'), 'html_escape|trim|required|max_length[3]');
 		
 		$country=NULL;
 				

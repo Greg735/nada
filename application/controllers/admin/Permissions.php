@@ -93,8 +93,8 @@ class Permissions extends MY_Controller {
 		$this->form_validation->reset_validation();
 		$this->form_validation->set_data($_POST);
 
-		$this->form_validation->set_rules('role', t('role'), 'xss_clean|trim|alpha_numeric_spaces|required|max_length[100]');
-		$this->form_validation->set_rules('description', t('description'), 'xss_clean|max_length[255]');
+		$this->form_validation->set_rules('role', t('role'), 'html_escape|trim|alpha_numeric_spaces|required|max_length[100]');
+		$this->form_validation->set_rules('description', t('description'), 'html_escape|max_length[255]');
 
 		if ($this->form_validation->run() == TRUE){
 
@@ -135,9 +135,9 @@ class Permissions extends MY_Controller {
 		}
 
 		//validation rules
-		$this->form_validation->set_rules('role', t('role'), 'xss_clean|trim|alpha_numeric_spaces|required|max_length[100]');
-		$this->form_validation->set_rules('description', t('description'), 'xss_clean|max_length[255]');
-		$this->form_validation->set_rules('weight', t('weight'), 'xss_clean|is_natural|max_length[3]');
+		$this->form_validation->set_rules('role', t('role'), 'html_escape|trim|alpha_numeric_spaces|required|max_length[100]');
+		$this->form_validation->set_rules('description', t('description'), 'html_escape|max_length[255]');
+		$this->form_validation->set_rules('weight', t('weight'), 'html_escape|is_natural|max_length[3]');
 				
 		//process form				
 		if ($this->form_validation->run() == TRUE)

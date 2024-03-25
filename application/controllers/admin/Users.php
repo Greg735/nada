@@ -127,12 +127,12 @@ class Users extends MY_Controller {
 		$use_complex_password=$this->ci->config->item("require_complex_password");
 
 		//validate form input
-		$this->form_validation->set_rules('username', t('username'), 'xss_clean|max_length[20]|required|callback_username_exists');
+		$this->form_validation->set_rules('username', t('username'), 'html_escape|max_length[20]|required|callback_username_exists');
     	$this->form_validation->set_rules('email', t('email'), 'max_length[100]|required|valid_email|callback_email_exists');
-    	$this->form_validation->set_rules('first_name', t('first_name'), 'max_length[20]|required|xss_clean');
-    	$this->form_validation->set_rules('last_name', t('last_name'), 'max_length[20]|required|xss_clean');
-    	$this->form_validation->set_rules('phone1', t('phone'), 'max_length[20]|xss_clean|trim');
-    	$this->form_validation->set_rules('company', t('company'), 'max_length[255]|xss_clean');
+    	$this->form_validation->set_rules('first_name', t('first_name'), 'max_length[20]|required|html_escape');
+    	$this->form_validation->set_rules('last_name', t('last_name'), 'max_length[20]|required|html_escape');
+    	$this->form_validation->set_rules('phone1', t('phone'), 'max_length[20]|html_escape|trim');
+    	$this->form_validation->set_rules('company', t('company'), 'max_length[255]|html_escape');
 		$this->form_validation->set_rules('password', t('password'), 'required|min_length['.$this->config->item('min_password_length').']|max_length['.$this->config->item('max_password_length').']|matches[password_confirm]|is_complex_password['.$use_complex_password.']');
     	$this->form_validation->set_rules('password_confirm', t('password_confirmation'), 'required');
 
@@ -140,7 +140,7 @@ class Users extends MY_Controller {
 		/*
 		if ($this->input->post("group_id")==1)
 		{
-	    	$this->form_validation->set_rules('phone1', t('phone'), 'xss_clean|trim|required|max_length[20]');
+	    	$this->form_validation->set_rules('phone1', t('phone'), 'html_escape|trim|required|max_length[20]');
 		}
 		*/
 
@@ -264,12 +264,12 @@ class Users extends MY_Controller {
 		$use_complex_password=$this->config->item("require_complex_password");
 	              		
         //validate form input
-		$this->form_validation->set_rules('username', t('username'), 'trim|required|callback_username_exists');
+		$this->form_validation->set_rules('username', t('username'), 'trim|required|html_escape|callback_username_exists');
     	$this->form_validation->set_rules('email', t('email'), 'max_length[100]|required|valid_email|callback_email_exists');		
-    	$this->form_validation->set_rules('first_name', t('first_name'), 'trim|required|xss_clean');
-    	$this->form_validation->set_rules('last_name', t('last_name'), 'trim|required|xss_clean');
-    	$this->form_validation->set_rules('phone1', t('phone'), 'trim|xss_clean');
-    	$this->form_validation->set_rules('company', t('company_name'), 'trim|xss_clean');
+    	$this->form_validation->set_rules('first_name', t('first_name'), 'trim|required|html_escape');
+    	$this->form_validation->set_rules('last_name', t('last_name'), 'trim|required|html_escape');
+    	$this->form_validation->set_rules('phone1', t('phone'), 'trim|html_escape');
+    	$this->form_validation->set_rules('company', t('company_name'), 'trim|html_escape');
 
 		if ($this->input->post("password") || $this->input->post("password_confirm") )
 		{

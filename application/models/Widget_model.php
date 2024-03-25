@@ -340,10 +340,10 @@ class Widget_model extends CI_Model {
 		$this->form_validation->reset_validation();
 		$this->form_validation->set_data($options);
 
-        $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|trim|max_length[255]');
-        $this->form_validation->set_rules('description', 'Description', 'xss_clean|trim|max_length[500]');
-        $this->form_validation->set_rules('thumbnail', 'Thumbnail', 'xss_clean|trim|max_length[200]');
-        $this->form_validation->set_rules('uuid', 'UUID', 'required|xss_clean|alpha_dash|trim|max_length[100]');	
+        $this->form_validation->set_rules('title', 'Title', 'required|html_escape|trim|max_length[255]');
+        $this->form_validation->set_rules('description', 'Description', 'html_escape|trim|max_length[500]');
+        $this->form_validation->set_rules('thumbnail', 'Thumbnail', 'html_escape|trim|max_length[200]');
+        $this->form_validation->set_rules('uuid', 'UUID', 'required|html_escape|alpha_dash|trim|max_length[100]');
         
         //idno validation rule
         /*$this->form_validation->set_rules(
@@ -353,7 +353,7 @@ class Widget_model extends CI_Model {
                 "required",
                 "alpha_dash",
                 "max_length[100]",
-                "xss_clean",
+                "html_escape",
                 array('validate_uuid',array($this, 'valid_uuid')),				
             )		
         );*/

@@ -135,10 +135,10 @@ class Datadeposit extends MY_Controller {
 		}
 		
 		//required fields
-		$this->form_validation->set_rules('title','Title','trim|required|xss_clean|max_length[255]');
-		$this->form_validation->set_rules('name', t('shortname'),'required|max_length[100]');
+		$this->form_validation->set_rules('title','Title','trim|required|html_escape|max_length[255]');
+		$this->form_validation->set_rules('name', t('shortname'),'trim|required|html_escape|max_length[100]');
 		$this->form_validation->set_rules('description', t('description'),'max_length[1000]');
-		$this->form_validation->set_rules('collaborator[]', t('collaborator'), 'xss_clean|callback__email_check');
+		$this->form_validation->set_rules('collaborator[]', t('collaborator'), 'html_escape|callback__email_check');
 	
 		$data=NULL;
 		//get project by id
@@ -549,23 +549,23 @@ class Datadeposit extends MY_Controller {
 		$data['project'] = $this->DD_project_model->project_id($id, $this->session->userdata('email')); 
 		
 		
-		$this->form_validation->set_rules('access_policy', 'Access Policy', 'xss_clean|trim|max_length[255]|required');
-		$this->form_validation->set_rules('to_catalog', 'Choose Catalog', 'xss_clean|trim|max_length[255]');
+		$this->form_validation->set_rules('access_policy', 'Access Policy', 'html_escape|trim|max_length[255]|required');
+		$this->form_validation->set_rules('to_catalog', 'Choose Catalog', 'html_escape|trim|max_length[255]');
 		
 		if ($this->input->post('is_embargoed'))
 		{
-			$this->form_validation->set_rules('embargoed', 'Notes for Embargoed', 'xss_clean|trim|max_length[255]|required');
+			$this->form_validation->set_rules('embargoed', 'Notes for Embargoed', 'html_escape|trim|max_length[255]|required');
 		}
 			
-		$this->form_validation->set_rules('disclosure_risk', 'Disclosure Risk', 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('key_variables', 'Key variables', 'xss_clean|trim|max_length[500]');
-		$this->form_validation->set_rules('sensitive_variables', 'Sensitive variables', 'xss_clean|trim|max_length[500]');
-		$this->form_validation->set_rules('access_authority', 'Access Authority', 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('library_notes', 'Library Notes', 'xss_clean|trim|max_length[255]');
+		$this->form_validation->set_rules('disclosure_risk', 'Disclosure Risk', 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('key_variables', 'Key variables', 'html_escape|trim|max_length[500]');
+		$this->form_validation->set_rules('sensitive_variables', 'Sensitive variables', 'html_escape|trim|max_length[500]');
+		$this->form_validation->set_rules('access_authority', 'Access Authority', 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('library_notes', 'Library Notes', 'html_escape|trim|max_length[255]');
 		
 		if ($this->input->post('cc'))
 		{
-			$this->form_validation->set_rules('cc', 'CC', 'xss_clean|trim|max_length[300]|valid_emails');
+			$this->form_validation->set_rules('cc', 'CC', 'html_escape|trim|max_length[300]|valid_emails');
 		}	
 		
 		if(!$this->form_validation->run())
@@ -1089,15 +1089,15 @@ class Datadeposit extends MY_Controller {
 		$this->template->add_js('javascript/jquery/ui/jquery-ui-1.7.2.custom.js');
 		
        	//validate form input
-		$this->form_validation->set_rules('title', 'Title', 'xss_clean|trim|max_length[255]|required');
-		$this->form_validation->set_rules('authors', 'Authors', 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('url', 'URL', 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('volume', 'Volume', 'xss_clean|trim|max_length[45]');
-		$this->form_validation->set_rules('issue', 'Issue', 'xss_clean|trim|max_length[45]');
-		$this->form_validation->set_rules('pub_year', 'Year', 'xss_clean|trim|max_length[4]|is_numeric');
-		$this->form_validation->set_rules('doi', 'DOI', 'xss_clean|trim|max_length[45]');
-		$this->form_validation->set_rules('flag', t('flag_as'), 'xss_clean|trim|max_length[45]');
-		$this->form_validation->set_rules('published', t('published'), 'xss_clean|trim|is_numeric');
+		$this->form_validation->set_rules('title', 'Title', 'html_escape|trim|max_length[255]|required');
+		$this->form_validation->set_rules('authors', 'Authors', 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('url', 'URL', 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('volume', 'Volume', 'html_escape|trim|max_length[45]');
+		$this->form_validation->set_rules('issue', 'Issue', 'html_escape|trim|max_length[45]');
+		$this->form_validation->set_rules('pub_year', 'Year', 'html_escape|trim|max_length[4]|is_numeric');
+		$this->form_validation->set_rules('doi', 'DOI', 'html_escape|trim|max_length[45]');
+		$this->form_validation->set_rules('flag', t('flag_as'), 'html_escape|trim|max_length[45]');
+		$this->form_validation->set_rules('published', t('published'), 'html_escape|trim|is_numeric');
 		
 		//ignore the form submit if only changing the citation type
 		if ($this->input->post("select")==FALSE)
@@ -1246,14 +1246,14 @@ class Datadeposit extends MY_Controller {
 
 		
 	    //validate form input
-		$this->form_validation->set_rules('authors', 'Authors', 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('url', 'URL', 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('volume', 'Volume', 'xss_clean|trim|max_length[45]');
-		$this->form_validation->set_rules('issue', 'Issue', 'xss_clean|trim|max_length[45]');
-		$this->form_validation->set_rules('pub_year', 'Year', 'xss_clean|trim|max_length[4]|is_numeric');
-		$this->form_validation->set_rules('doi', 'DOI', 'xss_clean|trim|max_length[45]');
-		$this->form_validation->set_rules('flag', t('flag_as'), 'xss_clean|trim|max_length[45]');
-		$this->form_validation->set_rules('published', t('published'), 'xss_clean|trim|is_numeric');
+		$this->form_validation->set_rules('authors', 'Authors', 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('url', 'URL', 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('volume', 'Volume', 'html_escape|trim|max_length[45]');
+		$this->form_validation->set_rules('issue', 'Issue', 'html_escape|trim|max_length[45]');
+		$this->form_validation->set_rules('pub_year', 'Year', 'html_escape|trim|max_length[4]|is_numeric');
+		$this->form_validation->set_rules('doi', 'DOI', 'html_escape|trim|max_length[45]');
+		$this->form_validation->set_rules('flag', t('flag_as'), 'html_escape|trim|max_length[45]');
+		$this->form_validation->set_rules('published', t('published'), 'html_escape|trim|is_numeric');
 		
 		//ignore the form submit if only changing the citation type
 		if ($this->input->post("select")==FALSE)
@@ -1899,10 +1899,10 @@ class Datadeposit extends MY_Controller {
 
 	public function create() 
 	{
-		$this->form_validation->set_rules('title','Title','trim|required|xss_clean|max_length[255]');
-		$this->form_validation->set_rules('name', t('shortname'),'required|max_length[100]');
+		$this->form_validation->set_rules('title','Title','trim|required|html_escape|max_length[255]');
+		$this->form_validation->set_rules('name', t('shortname'),'trim|required|html_escape|max_length[100]');
 		$this->form_validation->set_rules('description', t('description'),'max_length[1000]');
-		$this->form_validation->set_rules('collaborator[]', t('collaborator'), 'xss_clean|callback__email_check');
+		$this->form_validation->set_rules('collaborator[]', t('collaborator'), 'html_escape|callback__email_check');
 	
 		$data=NULL;
 		

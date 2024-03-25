@@ -26,14 +26,14 @@ class Configurations extends MY_Controller {
 	
 	function index()
 	{	
-		$this->form_validation->set_rules('catalog_root', t('catalog_folder'), 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('ddi_import_folder', t('ddi_import_folder'), 'xss_clean|trim|max_length[255]');		
-		$this->form_validation->set_rules('ddi_import_folder', t('ddi_import_folder'), 'xss_clean|trim|max_length[255]|callback_check_folder_exists');
-		$this->form_validation->set_rules('catalog_root', t('catalog_folder'), 'xss_clean|trim|max_length[255]|callback_check_folder_exists');
-		$this->form_validation->set_rules('website_title', t('website_title'), 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('language', t('language'), 'xss_clean|trim|max_length[255]');
-		$this->form_validation->set_rules('cache_default_expires', t('cache_expiry'), 'xss_clean|trim|max_length[10]|numeric');
-		$this->form_validation->set_rules('catalog_records_per_page', t('catalog_records_per_page'), 'xss_clean|trim|max_length[10]|numeric');
+		$this->form_validation->set_rules('catalog_root', t('catalog_folder'), 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('ddi_import_folder', t('ddi_import_folder'), 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('ddi_import_folder', t('ddi_import_folder'), 'html_escape|trim|max_length[255]|callback_check_folder_exists');
+		$this->form_validation->set_rules('catalog_root', t('catalog_folder'), 'html_escape|trim|max_length[255]|callback_check_folder_exists');
+		$this->form_validation->set_rules('website_title', t('website_title'), 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('language', t('language'), 'html_escape|trim|max_length[255]');
+		$this->form_validation->set_rules('cache_default_expires', t('cache_expiry'), 'html_escape|trim|max_length[10]|numeric');
+		$this->form_validation->set_rules('catalog_records_per_page', t('catalog_records_per_page'), 'html_escape|trim|max_length[10]|numeric');
 			
 		$settings=NULL;
 		if ($this->form_validation->run() === TRUE){

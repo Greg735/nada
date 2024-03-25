@@ -269,11 +269,11 @@ class Data_file_model extends CI_Model {
 	
 		//validation rules for a new record
 		if($is_new){				
-			#$this->form_validation->set_rules('surveyid', 'IDNO', 'xss_clean|trim|max_length[255]|required');
-			//$this->form_validation->set_rules('file_id', 'File ID', 'required|xss_clean|trim|max_length[50]');	
-			$this->form_validation->set_rules('file_name', 'File name', 'required|xss_clean|trim|max_length[200]');	
-			$this->form_validation->set_rules('case_count', 'Case count', 'xss_clean|trim|max_length[10]');	
-			$this->form_validation->set_rules('var_count', 'Variable count', 'xss_clean|trim|max_length[10]');	
+			#$this->form_validation->set_rules('surveyid', 'IDNO', 'html_escape|trim|max_length[255]|required');
+			//$this->form_validation->set_rules('file_id', 'File ID', 'required|html_escape|trim|max_length[50]');
+			$this->form_validation->set_rules('file_name', 'File name', 'required|html_escape|trim|max_length[200]');
+			$this->form_validation->set_rules('case_count', 'Case count', 'html_escape|trim|max_length[10]');
+			$this->form_validation->set_rules('var_count', 'Variable count', 'html_escape|trim|max_length[10]');
 
 			
 			//file id
@@ -285,7 +285,7 @@ class Data_file_model extends CI_Model {
 					"max_length[50]",
 					"trim",
 					"alpha_dash",
-					"xss_clean",
+					"html_escape",
 					array('validate_file_id',array($this, 'validate_file_id')),				
 				)		
 			);

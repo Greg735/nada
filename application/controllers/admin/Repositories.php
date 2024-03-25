@@ -186,14 +186,14 @@ class Repositories extends MY_Controller {
 		}
 
 		//set validation rules
-		$this->form_validation->set_rules('repositoryid', t('repositoryid'), 'xss_clean|trim|required|max_length[255]|callback__repository_identity_check|callback__repository_id_format_check|alpha_dash');
-		$this->form_validation->set_rules('title', t('title'), 'xss_clean|trim|required|max_length[255]');
-		$this->form_validation->set_rules('short_text', t('short_text'), 'xss_clean|trim|required');
+		$this->form_validation->set_rules('repositoryid', t('repositoryid'), 'html_escape|trim|required|max_length[255]|callback__repository_identity_check|callback__repository_id_format_check|alpha_dash');
+		$this->form_validation->set_rules('title', t('title'), 'html_escape|trim|required|max_length[255]');
+		$this->form_validation->set_rules('short_text', t('short_text'), 'html_escape|trim|required');
 		$this->form_validation->set_rules('long_text', t('long_text'), 'trim');
-		$this->form_validation->set_rules('weight', t('weight'), 'xss_clean|trim|max_length[5]|is_natural');
-		$this->form_validation->set_rules('thumbnail', t('thumbnail'), 'xss_clean|trim|required');
-		$this->form_validation->set_rules('section', t('section'), 'xss_clean|trim|max_length[3]|is_natural');
-		$this->form_validation->set_rules('published', t('published'), 'xss_clean|trim|max_length[1]|is_natural');
+		$this->form_validation->set_rules('weight', t('weight'), 'html_escape|trim|max_length[5]|is_natural');
+		$this->form_validation->set_rules('thumbnail', t('thumbnail'), 'html_escape|trim|required');
+		$this->form_validation->set_rules('section', t('section'), 'html_escape|trim|max_length[3]|is_natural');
+		$this->form_validation->set_rules('published', t('published'), 'html_escape|trim|max_length[1]|is_natural');
 		$this->form_validation->set_rules('thumbnailfile', 'thumbnail_upload', 'callback__thumbnail_upload');
 		
 		if (is_numeric($id)){
